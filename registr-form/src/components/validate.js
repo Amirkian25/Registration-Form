@@ -1,11 +1,6 @@
-export const valiDate = (data) =>{
+export const valiDate = (data , type) =>{
     const errors ={};
-    if(!data.name.trim()){
-        errors.name = "Name is required"
-
-    }else{
-        delete errors.name
-    }
+    
     if(!data.email){
         errors.email = "Email is required"
 
@@ -24,22 +19,32 @@ export const valiDate = (data) =>{
         delete errors.password
     }
    
-    if(!data.confirmPassword){
-        errors.confirmpassword = "Confrim the Password"
-
-    }else if (data.confirmPassword !== data.password){
-        errors.confirmpassword = "Password do not match"
-
-
-    }else{
-        delete errors.confirmpassword
-    }
+   
+    if(type === "signup"){
+        if(!data.name.trim()){
+            errors.name = "Name is required"
     
-    if(!data.isAccepted){
-        errors.isAccepted ="Accept our regulations"
+        }else{
+            delete errors.name
+        }
+        if(!data.confirmPassword){
+            errors.confirmpassword = "Confrim the Password"
+    
+        }else if (data.confirmPassword !== data.password){
+            errors.confirmpassword = "Password do not match"
+    
+    
+        }else{
+            delete errors.confirmpassword
+        }
+        
+        if(!data.isAccepted){
+            errors.isAccepted ="Accept our regulations"
+    
+        }else{
+            delete errors.isAccepted
+        }
 
-    }else{
-        delete errors.isAccepted
     }
   
     return errors
